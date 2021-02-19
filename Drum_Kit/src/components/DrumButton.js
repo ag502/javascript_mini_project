@@ -6,8 +6,8 @@ class DrumButton {
         this.$button = document.createElement("div")
         this.$button.classList.add("key")
 
-        $target.appendChild(this.$button)
         this.render()
+        $target.appendChild(this.$button)
     }
 
     render = () => {
