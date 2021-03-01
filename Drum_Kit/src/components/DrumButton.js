@@ -4,10 +4,21 @@ class DrumButton {
         this.type = type
 
         this.$button = document.createElement("div")
+        this.$button.dataset.key = this.key
         this.$button.classList.add("key")
 
-        this.render()
+        document.addEventListener("keydown", this.handleKeyToggle(this.$button))
+        document.addEventListener("keyup", this.handleKeyToggle(this.$button))
+
         $target.appendChild(this.$button)
+        this.render()
+    }
+
+    handleKeyToggle = (target) => (e) => {
+        const {code} = e
+        if (code === `Numpad${this.key}`) {
+            target.classList.toggle("playing")
+        }
     }
 
     render = () => {

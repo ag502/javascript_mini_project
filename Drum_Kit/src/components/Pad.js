@@ -6,8 +6,8 @@ class Pad {
         this.$pad = document.createElement("div")
         this.$pad.classList.add("keys")
 
-        this.render()
         $target.appendChild(this.$pad)
+        this.render()
     }
 
     render = () => {
