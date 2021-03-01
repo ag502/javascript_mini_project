@@ -1,7 +1,8 @@
 class DrumButton {
-    constructor($target, {key, type}) {
+    constructor($target, {key, type, src}) {
         this.key = key
         this.type = type
+        this.audioSrc = src
 
         this.$button = document.createElement("div")
         this.$button.dataset.key = this.key
@@ -15,9 +16,14 @@ class DrumButton {
     }
 
     handleKeyToggle = (target) => (e) => {
-        const {code} = e
-        if (code === `Numpad${this.key}`) {
+        const {key} = e
+        if (key === this.key) {
             target.classList.toggle("playing")
+
+            if (target.classList.contains("playing")) {
+                this.$audio.currentTime = 0
+                this.$audio.play()
+            }
         }
     }
 
@@ -29,8 +35,13 @@ class DrumButton {
         $keyType.classList.add("sound")
         $keyType.textContent = this.type
 
+        this.$audio = document.createElement("audio")
+        this.$audio.setAttribute("src", this.audioSrc)
+        this.$audio.dataset.key = this.key
+
         this.$button.appendChild($keyName)
         this.$button.appendChild($keyType)
+        this.$button.append(this.$audio)
     }
 }
 

@@ -11,8 +11,8 @@ class Pad {
     }
 
     render = () => {
-        keyInfo.forEach(({key, type}, idx) => {
-            new DrumButton(this.$pad, {key, type})
+        keyInfo.forEach(({key, type, src}, idx) => {
+            new DrumButton(this.$pad, {key, type, src})
         })
     }
 }
