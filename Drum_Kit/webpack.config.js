@@ -11,10 +11,6 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: ["styled-loader", "css-loader"]
-            },
-            {
                 test: /\.js$/,
                 exclude: "/node_modules",
                 use: {
@@ -24,12 +20,14 @@ module.exports = {
                         presets: ["@babel/preset-env"]
                     }
                 }
-            }
+            },
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: "index.html"
-    })],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "index.html"
+        }),
+    ],
     devServer: {
         port: 9000,
     }
